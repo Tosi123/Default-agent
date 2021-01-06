@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s\t%(levelname)s\t%(filename)s:%(lineno)s\t%(message)s"
+        },
+        "multi_thread": {
+            "format": "%(asctime)s\t%(levelname)s\t%(threadName)s-%(filename)s:%(lineno)s\t%(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "default",
+            "stream": "ext://sys.stdout"
+        },
+        "main_file_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "DEBUG",
+            "formatter": "default",
+            "filename": "./logs/project.log",
+            "when": "midnight"
+        },
+        "db_file_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "DEBUG",
+            "formatter": "default",
+            "filename": "./logs/project_db.log",
+            "when": "midnight"
+        },
+        "cmd_file_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "DEBUG",
+            "formatter": "default",
+            "filename": "./logs/project_cmd.log",
+            "when": "midnight"
+        }
+    },
+    "loggers": {
+        "main": {
+            "level": "DEBUG",
+            "handlers": [
+                "main_file_handler"
+            ],
+            "propagate": "no"
+        },
+        "db": {
+            "level": "DEBUG",
+            "handlers": [
+                "db_file_handler"
+            ],
+            "propagate": "no"
+        },
+        "cmd": {
+            "level": "DEBUG",
+            "handlers": [
+                "cmd_file_handler"
+            ],
+            "propagate": "no"
+        }
+    }
+}

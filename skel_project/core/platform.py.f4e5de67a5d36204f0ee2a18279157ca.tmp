@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+
+# Std Library
+import os
+import psutil
+import platform
+
+class Platform:
+    """
+    시스템 운영체제 및 하드웨어 정보 클래스
+    """
+    @staticmethod
+    def get_os():
+        pass
+
+    @staticmethod
+    def free_mem():
+        return psutil.virtual_memory()
+    
+    @staticmethod
+    def use_cpu():
+        return psutil.cpu_percent()
+
+    @staticmethod
+    def use_mem():
+
