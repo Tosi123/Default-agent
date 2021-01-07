@@ -4,10 +4,9 @@
 import os
 from configparser import ConfigParser
 from optparse import OptionParser, Values
-# 3rd Library
 
 # Project Library
-from .env import *
+from .env import AGENT_NAME, AGENT_CONFIG, AGENT_CONFIG_DEV, AGENT_VERSION
 from .logger import LogSetting
 from .exception import PathNotFound
 
