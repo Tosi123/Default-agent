@@ -21,21 +21,24 @@
             "level": "DEBUG",
             "formatter": "default",
             "filename": "./logs/project.log",
-            "when": "midnight"
+            "when": "midnight",
+            "interval": 1
         },
         "db_file_handler": {
             "class": "logging.handlers.TimedRotatingFileHandler",
             "level": "DEBUG",
             "formatter": "default",
             "filename": "./logs/project_db.log",
-            "when": "midnight"
+            "when": "midnight",
+            "interval": 1
         },
         "cmd_file_handler": {
             "class": "logging.handlers.TimedRotatingFileHandler",
             "level": "DEBUG",
             "formatter": "default",
             "filename": "./logs/project_cmd.log",
-            "when": "midnight"
+            "when": "midnight",
+            "interval": 1
         }
     },
     "loggers": {
