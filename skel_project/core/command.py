@@ -14,19 +14,19 @@ def command_check(options):
     mode_list = ['test', 'dev', 'real']
 
     log.debug("=========Command Manager=========")
-    log.debug("Command: {}".format(command))
-    log.debug("Input Options: {}".format(options))
+    log.debug(f"Command: {command}")
+    log.debug(f"Input Options: {options}")
 
     if len(command) > 1:
-        print("More than one option is not allowed: {}".format(len(command)))
+        print(f"More than one option is not allowed: {len(command)}")
         sys.exit(1)
     elif len(command) == 0:
         print("Please enter an option")
         print("Use -h for help")
         sys.exit(1)
     elif options['mode'].lower() not in mode_list:
-        print("Unsupported agent mode: {}".format(options['mode']))
-        print("Support mode: {}".format(mode_list))
+        print(f"Unsupported agent mode: {options['mode']}")
+        print(f"Support mode: {mode_list}")
         sys.exit(1)
 
     return command[0]

@@ -16,8 +16,7 @@ log = LogSetting().log_set(__name__)
 def main():
     # 운영체제 검사 Linux만 허용
     if Platform.get_os() != 'linux':
-        log.error("This operating system is not supported: {}".format(
-            Platform.get_os()))
+        log.error(f"This operating system is not supported: {Platform.get_os()}")
         log.error("Linux only...")
         sys.exit(1)
 
@@ -38,8 +37,8 @@ def main():
         agent.status()
         sys.exit(0)
     elif command == 'version':
-        print("Name: {}".format(setting.get_name))
-        print("Version: {}".format(setting.get_version))
+        print(f"Name: {setting.get_name}")
+        print(f"Version: {setting.get_version}")
         sys.exit(0)
 
 

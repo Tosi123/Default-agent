@@ -61,12 +61,12 @@ class Daemon:
         자식 프로세스 생성 함수
         """
         try:
-            pid = os.fork()
-            if pid > 0:
+            fork = os.fork()
+            if fork > 0:
                 # 부모 프로세스 종료
                 sys.exit(0)
             self._default_setting()
-            log.debug("Fork create success: {}".format(pid))
+            log.debug(f"Fork create success: {fork}")
         except Exception as e:
             log.exception("Daemon fork fail")
             sys.exit(1)
@@ -77,10 +77,10 @@ class Daemon:
         status = Platform.ps_status(pid)
 
         if status:
-            log.warn("Don't start daemon Already starting: {}".format(pid))
+            log.warn(f"Don't start daemon Already starting: {pid}")
             return False
         elif status == None:
-            log.error("Daemon status check fail: {}".format(pid))
+            log.error(f"Daemon status check fail: {pid}")
             return False
 
         # Daemon 생성 후 Main Logic 실행
@@ -99,7 +99,7 @@ class Daemon:
             log.warn("Daemon already stopped")
             return True
         elif status == None:
-            log.error("Daemon status check fail: {}".format(pid))
+            log.error(f"Daemon status check fail: {pid}")
             return False
 
         try:
@@ -107,22 +107,22 @@ class Daemon:
             log.info("Parent process shutdown start...")
         except ProcessLookupError:
             try:
-                log.warn("Unable to kill parent process: {}".os.getpgid(pid))
+                log.warn(f"Unable to kill parent process: {os.getpgid(pid)}")
                 os.kill(pid, signal.SIGTERM)
                 log.info("Daemon shutdown start...")
             except ProcessLookupError:
                 log.warn("Daemon not found")
             except Exception as e:
-                log.exception("Daemon shutdown error: {}".format(e))
+                log.exception(f"Daemon shutdown error: {e}")
                 return False
         except Exception as e:
-            log.exception("Parent process kill error: {}".format(e))
+            log.exception(f"Parent process kill error: {e}")
             return False
 
         # Stop sginal 보낸뒤 프로세스 죽은지 확인 후 파일 삭제
         while True:
             if Platform.ps_status(pid) == False:
-                log.info("Daemon shutdown successful: {}".format(pid))
+                log.info(f"Daemon shutdown successful: {pid}")
                 break
             log.info("Stopping...")
             time.sleep(1)
@@ -139,20 +139,20 @@ class Daemon:
         pid = self.pid_check()
         if Platform.ps_status(pid):
             print("=========DAEMON STATUS=========")
-            print("PID: {}".format(pid))
-            print("Status: Running")
-            print("System CPU Core: {}ea".format(Platform.sys_cup_count()))
-            print("System CPU Used: {}%".format(Platform.sys_use_cpu()))
-            print("System Memory Free: {}MB".format(Platform.sys_free_mem()))
-            print("Process CPU Used: {}%".format(Platform.use_mem(pid)))
-            print("Process Memory Used: {}MB".format(Platform.use_mem(pid)))
+            print(f"PID: {pid}")
+            print(f"Status: Running")
+            print(f"System CPU Core: {Platform.sys_cup_count()}ea")
+            print(f"System CPU Used: {Platform.sys_use_cpu()}%")
+            print(f"System Memory Free: {Platform.sys_free_mem()}MB")
+            print(f"Process CPU Used: {Platform.use_mem(pid)}%")
+            print(f"Process Memory Used: {Platform.use_mem(pid)}MB")
             print("==============================")
         else:
             print("=========DAEMON STATUS=========")
             print("Status: Stopped")
-            print("System CPU Core: {}ea".format(Platform.sys_cup_count()))
-            print("System CPU Used: {}%".format(Platform.sys_use_cpu()))
-            print("System Memory Free: {}MB".format(Platform.sys_free_mem()))
+            print(f"System CPU Core: {Platform.sys_cup_count()}ea")
+            print(f"System CPU Used: {Platform.sys_use_cpu()}%")
+            print(f"System Memory Free: {Platform.sys_free_mem()}MB")
             print("==============================")
 
     def run(self):

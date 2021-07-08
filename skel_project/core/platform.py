@@ -21,7 +21,8 @@ class Platform:
 
     @staticmethod
     def sys_free_mem():
-        return round(psutil.virtual_memory().free / (1024*1024))  # Byte -> MB
+        # Byte -> MB
+        return round(psutil.virtual_memory().free / (1024*1024))
 
     @staticmethod
     def sys_use_cpu():

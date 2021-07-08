@@ -6,7 +6,7 @@ class PathNotFound(Exception):
         self.string = string
 
     def __str__(self):
-        return "Path not found: {}".format(self.string)
+        return f"Path not found: {self.string}"
 
 
 class MethodNotImplementedError(Exception):
@@ -14,4 +14,4 @@ class MethodNotImplementedError(Exception):
         self.string = string
 
     def __str__(self):
-        return "Method not implemented: {}".format(self.string)
+        return f"Method not implemented: {self.string}"

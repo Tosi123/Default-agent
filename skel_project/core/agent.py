@@ -18,7 +18,7 @@ class Agent(Daemon):
         self.run_loop = True
 
     def _sigterm_handle(self, signum, frame):
-        log.debug("Shutdown the loop... Signal entered: {}".format(signum))
+        log.debug(f"Shutdown the loop... Signal entered: {signum}")
         self.run_loop = False
 
     def run(self):

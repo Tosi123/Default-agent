@@ -34,7 +34,7 @@ class AgentSettiong:
             options, args = parser.parse_args()
             option_dict = vars(options)
         except Exception as e:
-            log.error("Agent Options Load Error: {}".format(e))
+            log.error(f"Agent Options Load Error: {e}")
             option_dict = {'agent_start': False,
                            'agent_stop': False,
                            'agent_stauts': True,
