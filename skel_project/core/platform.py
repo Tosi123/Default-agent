@@ -5,6 +5,7 @@ import platform
 
 # 3rd Library
 import psutil
+import setproctitle
 
 
 class Platform:
@@ -57,3 +58,7 @@ class Platform:
             return False
         except Exception as e:
             return None
+
+    @staticmethod
+    def set_proc_name(name):
+        setproctitle.setproctitle(str(name))

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-AGENT_VERSION = "0.0.1"
+AGENT_VERSION = "0.1.0"
 AGENT_NAME = "SKEL_PROJECT"
 AGENT_HOME = "."
 AGENT_CONFIG = AGENT_HOME + "/config/system.ini"
